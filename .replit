@@ -1,0 +1,30 @@
+modules = ["java-graalvm22.3"]
+[agent]
+expertMode = true
+
+[nix]
+channel = "stable-25_05"
+packages = ["jdk21", "android-tools"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Android Project Info"
+
+[[workflows.workflow]]
+name = "Android Project Info"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"=== Klick'r - Smart AutoClicker ===\" && echo \"\" && echo \"This is a native Android mobile application.\" && echo \"It requires Android SDK to build APKs, which is not available in this environment.\" && echo \"\" && echo \"To build the app:\" && echo \"  1. Clone the repository to a local machine with Android Studio\" && echo \"  2. Run: ./gradlew assembleDebug\" && echo \"\" && echo \"Project Structure:\" && ls -la && echo \"\" && echo \"Java Version:\" && java --version && echo \"\" && echo \"Gradle Version:\" && ./gradlew --version 2>/dev/null | head -10"
+
+[workflows.workflow.metadata]
+outputType = "console"
