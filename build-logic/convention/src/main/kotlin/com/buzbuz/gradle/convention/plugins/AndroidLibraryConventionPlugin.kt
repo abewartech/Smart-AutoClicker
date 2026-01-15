@@ -41,7 +41,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 minSdk = libs.versions.android.minSdk
             }
 
-            ndkVersion = libs.versions.android.ndk
+            // ndkVersion = libs.versions.android.ndk
 
             compileOptions.apply {
                 sourceCompatibility = libs.versions.java

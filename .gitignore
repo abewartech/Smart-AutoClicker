@@ -83,3 +83,6 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+build_log_2_utf8.txt
+build_log_*.txt
+build_log.txt

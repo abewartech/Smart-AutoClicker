@@ -25,7 +25,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Klick'r"
 
-includeBuild("build-logic")
+
 
 include(":core:common:actions")
 include(":core:common:android")
@@ -55,3 +55,5 @@ include(":feature:smart-debugging")
 include(":feature:tutorial")
 
 include(":smartautoclicker")
+
+include(":ai-assistant")
