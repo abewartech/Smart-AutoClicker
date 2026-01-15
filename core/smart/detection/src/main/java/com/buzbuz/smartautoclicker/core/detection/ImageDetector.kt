@@ -56,6 +56,26 @@ interface ImageDetector : AutoCloseable {
         threshold: Int,
     ): DetectionResult
 
+    /**
+     * Detect multiple occurrences of the bitmap in the current screen bitmap.
+     * [setScreenBitmap] must have been called first with the content of the screen.
+     *
+     * @param conditionBitmap the condition to detect in the screen.
+     * @param conditionWidth the expected width of the condition at detection time.
+     * @param conditionHeight the expected height of the condition at detection time.
+     * @param detectionArea the position on the screen where the condition should be detected.
+     * @param threshold the allowed error threshold allowed for the condition.
+     *
+     * @return the results of the detection.
+     */
+    fun detectConditionMultiple(
+        conditionBitmap: Bitmap,
+        conditionWidth: Int,
+        conditionHeight: Int,
+        detectionArea: Rect,
+        threshold: Int,
+    ): MultiDetectionResult
+
     /** Release the resources of the screen image set with [setScreenBitmap]. */
     fun releaseScreenBitmap(screenBitmap: Bitmap)
 }

@@ -94,7 +94,35 @@ class NativeDetector private constructor() : ImageDetector {
             )
         }
 
-        return detectionResult.copy()
+    return detectionResult.copy()
+    }
+
+    override fun detectConditionMultiple(
+        conditionBitmap: Bitmap,
+        conditionWidth: Int,
+        conditionHeight: Int,
+        detectionArea: Rect,
+        threshold: Int,
+    ): MultiDetectionResult {
+        val result = MultiDetectionResult()
+        if (isClosed) return result
+
+        try {
+            detectMultiple(conditionBitmap, conditionWidth, conditionHeight, detectionArea.left, detectionArea.top,
+                detectionArea.width(), detectionArea.height(), threshold, result)
+        } catch (ex: Exception) {
+            ex.throwWithKeys(
+                keys = mapOf(
+                    "screenSize" to "${screenDimensions.x}x${screenDimensions.y}",
+                    "originalConditionSize" to "${conditionBitmap.width}x${conditionBitmap.height}",
+                    "conditionSize" to "${conditionWidth}x$conditionHeight",
+                    "detectionArea" to detectionArea.toString(),
+                    "threshold" to threshold.toString(),
+                ),
+            )
+        }
+
+        return result
     }
 
     override fun releaseScreenBitmap(screenBitmap: Bitmap) {
@@ -145,6 +173,31 @@ class NativeDetector private constructor() : ImageDetector {
         height: Int,
         threshold: Int,
         result: DetectionResult,
+    )
+
+    /**
+     * Native method for detecting multiple occurrences of if the bitmap is at a specific position in the current screen bitmap.
+     *
+     * @param conditionBitmap the condition to detect in the screen.
+     * @param conditionWidth the expected width of the condition at detection time.
+     * @param conditionHeight the expected height of the condition at detection time.
+     * @param x the horizontal position of the condition.
+     * @param y the vertical position of the condition.
+     * @param width the width of the condition.
+     * @param height the height of the condition.
+     * @param threshold the allowed error threshold allowed for the condition.
+     * @param result the result object to populate.
+     */
+    private external fun detectMultiple(
+        conditionBitmap: Bitmap,
+        conditionWidth: Int,
+        conditionHeight: Int,
+        x: Int,
+        y: Int,
+        width: Int,
+        height: Int,
+        threshold: Int,
+        result: MultiDetectionResult,
     )
 
     /** Native method for releasing the screen image resources set with [setScreenImage]. */
