@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch FDroidDebug",
+            "type": "android",
+            "request": "launch",
+            "appId": "com.buzbuz.smartautoclicker.debug",
+            "activity": ".scenarios.ScenarioActivity",
+            "preLaunchTask": "Install FDroidDebug"
+        },
+        {
+            "name": "Attach to Process",
+            "type": "android",
+            "request": "attach",
+            "appId": "com.buzbuz.smartautoclicker.debug"
+        }
+    ]
+}

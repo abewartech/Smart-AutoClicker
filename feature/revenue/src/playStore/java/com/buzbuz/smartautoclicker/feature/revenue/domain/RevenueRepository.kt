@@ -279,13 +279,7 @@ private fun toPurchaseState(state: InAppPurchaseState, product: InAppProduct?): 
     }
 
 private fun toUserBillingState(adState: AdState, purchaseState: PurchaseState, trial: Boolean, quality: Quality): UserBillingState =
-    when {
-        purchaseState == PurchaseState.PURCHASED -> UserBillingState.PURCHASED
-        quality != Quality.High -> UserBillingState.EXEMPTED
-        adState == AdState.VALIDATED -> UserBillingState.AD_WATCHED
-        trial -> UserBillingState.TRIAL
-        else -> UserBillingState.AD_REQUESTED
-    }
+    UserBillingState.PURCHASED
 
 internal val TRIAL_SESSION_DURATION_DURATION = 30.minutes
 @VisibleForTesting internal val AD_WATCHED_STATE_DURATION = 30.minutes
