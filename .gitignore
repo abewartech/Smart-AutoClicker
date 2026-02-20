@@ -86,3 +86,7 @@ lint/tmp/
 build_log_2_utf8.txt
 build_log_*.txt
 build_log.txt
+gradle_err.txt
+gradle_out.txt
+gradle.properties
+.kotlin/sessions/kotlin-compiler-9391002995979662711.salive
